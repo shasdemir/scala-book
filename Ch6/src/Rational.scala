@@ -19,8 +19,16 @@ class Rational(n: Int, d: Int) {
             denom * that.denom
         )
 
+    def + (i: Int): Rational = this + new Rational(i)
+
     def * (that: Rational): Rational =
         new Rational(numer * that.numer, denom * that.denom)
+
+    def * (i: Int): Rational = this * new Rational(i)
+
+    def / (that: Rational): Rational = this * new Rational(that.denom, that.numer)
+
+    def / (i: Int): Rational = this / new Rational(i)
 
     def lessThan(that: Rational) =
         numer * that.denom < that.numer * denom

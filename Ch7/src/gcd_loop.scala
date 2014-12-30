@@ -13,3 +13,6 @@ def gcdLoop(x: Long, y: Long): Long = {
     }
     b
 }
+
+
+println("GCD of 336 and 786: " + gcdLoop(336, 786))

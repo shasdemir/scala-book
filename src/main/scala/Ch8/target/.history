@@ -1,0 +1,10 @@
+run
+run 45 LongLines.scala
+exit
+run 45 LongLines.scala
+exit
+run 45 LongLines.scala
+console
+run 50 LongLines.scala
+run 45 LongLines.scala
+exit

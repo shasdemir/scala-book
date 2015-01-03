@@ -37,3 +37,6 @@ run
 clean
 compile
 run
+console
+:q
+exit

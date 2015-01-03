@@ -26,18 +26,18 @@ object Element {
 
     private class ArrayElement(val contents: Array[String]) extends Element {
 
-        require {  // every string element must be the same size
-            val lengthSet = Set(
-                    for (line <- contents)
-                    yield line.length
-                )
-
-            lengthSet.size == 1
+        require {
+            val optionEqual = contents.headOption.map { length =>
+                contents.forall(_.length == length)
+            }
+            optionEqual.getOrElse(false)
         }
 
         require {
-            val headLength = contents.head.length
-            contents.toList.forall(_.length == headLength)
+            contents.length == 0 || {
+                val headLength = contents.head.length
+                contents.forall(_.length == headLength)
+            }
         }
     }
 

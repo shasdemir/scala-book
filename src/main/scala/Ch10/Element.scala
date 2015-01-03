@@ -27,12 +27,17 @@ object Element {
     private class ArrayElement(val contents: Array[String]) extends Element {
 
         require {  // every string element must be the same size
-        val lengthSet = Set(
-                for (line <- contents)
-                yield line.length
-            )
+            val lengthSet = Set(
+                    for (line <- contents)
+                    yield line.length
+                )
 
             lengthSet.size == 1
+        }
+
+        require {
+            val headLength = contents.head.length
+            contents.toList.forall(_.length == headLength)
         }
     }
 

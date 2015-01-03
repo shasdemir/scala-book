@@ -22,37 +22,34 @@ abstract class Element {
 }
 
 
-class ArrayElement(val contents: Array[String]) extends Element {
-
-    require {  // every string element must be the same size
-        val lengthSet = Set(
-            for (line <- contents)
-            yield line.length
-        )
-
-        lengthSet.size == 1
-    }
-}
-
-
-class LineElement(s: String) extends Element {
-    val contents = Array(s)
-    override def height = 1
-    override def width = s.length
-}
-
-
-class UniformElement(
-    ch: Char,
-    override val width: Int,
-    override val height: Int
-) extends Element {
-    private val line = ch.toString * width
-    def contents = Array.fill(height)(line)
-}
-
-
 object Element {
+
+    private class ArrayElement(val contents: Array[String]) extends Element {
+
+        require {  // every string element must be the same size
+        val lengthSet = Set(
+                for (line <- contents)
+                yield line.length
+            )
+
+            lengthSet.size == 1
+        }
+    }
+
+    class LineElement(s: String) extends Element {
+        val contents = Array(s)
+        override def height = 1
+        override def width = s.length
+    }
+
+    class UniformElement(
+            ch: Char,
+            override val width: Int,
+            override val height: Int
+            ) extends Element {
+        private val line = ch.toString * width
+        def contents = Array.fill(height)(line)
+    }
 
     def elem(contents: Array[String]): Element =
         new ArrayElement(contents)

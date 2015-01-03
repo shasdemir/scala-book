@@ -1,2 +1,7 @@
 run
 exit
+run
+console
+:q
+wxit
+exit

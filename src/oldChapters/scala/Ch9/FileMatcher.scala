@@ -1,3 +1,5 @@
+package Ch9
+
 object FileMatcher {
     private def filesHere = (new java.io.File(".")).listFiles
 

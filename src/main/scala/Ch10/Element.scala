@@ -18,4 +18,4 @@ class ArrayElement(conts: Array[String]) extends Element {
     }
 
     def contents = conts
-}3
+}

@@ -17,5 +17,5 @@ class ArrayElement(conts: Array[String]) extends Element {
         lengthSet.size == 1
     }
 
-    def contents = conts
+    val contents = conts
 }

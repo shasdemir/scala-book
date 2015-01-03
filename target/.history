@@ -33,3 +33,7 @@ ex??t
 exit
 run
 exit
+run
+clean
+compile
+run

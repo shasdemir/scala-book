@@ -6,16 +6,14 @@ abstract class Element {
     def width: Int = if (height == 0) 0 else contents(0).length
 }
 
-class ArrayElement(conts: Array[String]) extends Element {
+class ArrayElement(val contents: Array[String]) extends Element {
 
     require {  // every string element must be the same size
         val lengthSet = Set(
-            for (line <- conts)
+            for (line <- contents)
             yield line.length
         )
 
         lengthSet.size == 1
     }
-
-    val contents = conts
 }

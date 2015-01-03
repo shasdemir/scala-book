@@ -1,5 +1,7 @@
 package Ch10
 
+import Element.elem
+
 abstract class Element {
     def contents: Array[String]
 
@@ -8,10 +10,10 @@ abstract class Element {
     def width: Int = if (height == 0) 0 else contents(0).length
 
     def above(that: Element): Element =
-        new ArrayElement(this.contents ++ that.contents)  // that has to be the same width of this
+        elem(this.contents ++ that.contents)  // that has to be the same width of this
 
     def beside(that: Element): Element = {
-        new ArrayElement(
+        elem(
             for ((line1, line2) <- this.contents zip that.contents) yield line1 + line2
         )
     }
@@ -47,4 +49,17 @@ class UniformElement(
 ) extends Element {
     private val line = ch.toString * width
     def contents = Array.fill(height)(line)
+}
+
+
+object Element {
+
+    def elem(contents: Array[String]): Element =
+        new ArrayElement(contents)
+
+    def elem(chr: Char, width: Int, height: Int): Element =
+        new UniformElement(chr, width, height)
+
+    def elem(line: String): Element =
+        new LineElement(line)
 }

@@ -18,6 +18,22 @@ abstract class Element {
         )
     }
 
+    def widen(w: Int): Element =
+        if (w <= width) this
+        else {
+            val left = elem(' ', (w - width) / 2, height)
+            var right = elem(' ', w - width - left.width, height)
+            left beside this beside right
+        }
+
+    def heighten(h: Int): Element =
+        if (h <= height) this
+        else {
+            val top = elem(' ', width, (h - height) / 2)
+            var bot = elem(' ', width, h - height - top.height)
+            top above this above bot
+        }
+
     override def toString = contents mkString "\n"
 }
 

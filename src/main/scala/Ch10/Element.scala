@@ -54,7 +54,7 @@ object Element {
             optionEqual.getOrElse(false)
         }
 
-        require {
+        require {  // check the same thing
             contents.length == 0 || {
                 val headLength = contents.head.length
                 contents.forall(_.length == headLength)

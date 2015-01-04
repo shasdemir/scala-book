@@ -1,6 +1,6 @@
 package Ch10
-
 import Element.elem
+
 
 abstract class Element {
     def contents: Array[String]
@@ -47,19 +47,19 @@ object Element {
 
     private class ArrayElement(val contents: Array[String]) extends Element {
 
-        require {
-            val optionEqual = contents.headOption.map { length =>
-                contents.forall(_.length == length)
-            }
-            optionEqual.getOrElse(false)
-        }
-
-        require {
-            contents.length == 0 || {
-                val headLength = contents.head.length
-                contents.forall(_.length == headLength)
-            }
-        }
+//        require {
+//            val optionEqual = contents.headOption.map { length =>
+//                contents.forall(_.length == length)
+//            }
+//            optionEqual.getOrElse(false)
+//        }
+//
+//        require {
+//            contents.length == 0 || {
+//                val headLength = contents.head.length
+//                contents.forall(_.length == headLength)
+//            }
+//        }
     }
 
     class LineElement(s: String) extends Element {

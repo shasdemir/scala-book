@@ -40,3 +40,6 @@ run
 console
 :q
 exit
+run
+run 6
+run 17

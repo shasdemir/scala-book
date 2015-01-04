@@ -9,10 +9,15 @@ abstract class Element {
 
     def width: Int = if (height == 0) 0 else contents(0).length
 
-    def above(that: Element): Element =
-        elem(this.contents ++ that.contents)  // that has to be the same width of this
+    def above(that: Element): Element = {
+        val this1 = this widen that.width
+        val that1 = that widen this.width
+        elem(this1.contents ++ that1.contents) // that has to be the same width of this
+    }
 
     def beside(that: Element): Element = {
+        val this1 = this heighten that.height
+        val that1 = that heighten this.height
         elem(
             for ((line1, line2) <- this.contents zip that.contents) yield line1 + line2
         )
@@ -22,7 +27,7 @@ abstract class Element {
         if (w <= width) this
         else {
             val left = elem(' ', (w - width) / 2, height)
-            var right = elem(' ', w - width - left.width, height)
+            val right = elem(' ', w - width - left.width, height)
             left beside this beside right
         }
 
@@ -30,7 +35,7 @@ abstract class Element {
         if (h <= height) this
         else {
             val top = elem(' ', width, (h - height) / 2)
-            var bot = elem(' ', width, h - height - top.height)
+            val bot = elem(' ', width, h - height - top.height)
             top above this above bot
         }
 
@@ -64,10 +69,10 @@ object Element {
     }
 
     class UniformElement(
-            ch: Char,
-            override val width: Int,
-            override val height: Int
-            ) extends Element {
+                            ch: Char,
+                            override val width: Int,
+                            override val height: Int
+                            ) extends Element {
         private val line = ch.toString * width
         def contents = Array.fill(height)(line)
     }

@@ -1,4 +1,4 @@
-package main.scala.Ch12
+package Ch12
 
 /**
  * Created by sukruhasdemir on 06/01/15.

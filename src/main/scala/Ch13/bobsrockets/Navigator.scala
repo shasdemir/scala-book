@@ -16,7 +16,7 @@ package navigation {
 
 
 package launch {
-    import navigation._
+    import Ch13.bobsrockets.navigation._
     object Vehicle {
         private[launch] val guide = new Navigator
     }

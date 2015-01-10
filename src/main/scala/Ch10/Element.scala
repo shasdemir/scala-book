@@ -24,15 +24,17 @@ abstract class Element {
     }
 
     def widen(w: Int): Element =
-        if (w <= width) this
+        if (w <= width)
+            this
         else {
             val left = elem(' ', (w - width) / 2, height)
             val right = elem(' ', w - width - left.width, height)
             left beside this beside right
-        }
+        } ensuring(w <= _.width)
 
     def heighten(h: Int): Element =
-        if (h <= height) this
+        if (h <= height)
+            this
         else {
             val top = elem(' ', width, (h - height) / 2)
             val bot = elem(' ', width, h - height - top.height)

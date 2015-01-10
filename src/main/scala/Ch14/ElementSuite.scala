@@ -8,8 +8,10 @@ import Ch10.Element.elem
  */
 class ElementSuite extends FunSuite {
 
-    test("elem result should have the same passed width") {  // name of the test
+    test("elem result should have the same width as passed.") {  // name of the test
         val ele = elem('x', 2, 3)
-        assert(ele.width == 2)
+        assertResult(3) {
+            ele.width
+        }
     }
 }

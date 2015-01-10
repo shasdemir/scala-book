@@ -22,14 +22,14 @@ class ElementSuite extends FunSuite {
 }
 
 
-//class ElementSuite2 extends JUnit3Suite {
-//
-//    def testUniformElement(): Unit = {
-//        val ele = elem('x', 2, 3)
-//        assert(ele.width === 2)
-//        assertResult(3) {ele.height}
-//        intercept[IllegalArgumentException] {
-//            elem('x', -2, 3)
-//        }
-//    }
-//}
+class ElementSuite2 extends JUnit3Suite {
+
+    def testUniformElement(): Unit = {
+        val ele = elem('x', 2, 3)
+        assert(ele.width === 2)
+        assertResult(3) {ele.height}
+        intercept[IllegalArgumentException] {
+            elem('x', -2, 3)
+        }
+    }
+}

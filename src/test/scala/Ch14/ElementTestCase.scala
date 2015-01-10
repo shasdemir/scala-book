@@ -5,8 +5,8 @@ import junit.framework.TestCase
 import org.junit.Assert.{assertEquals, fail} //import junit.framework.Assert.fail
 
 /**
- * Created by sukruhasdemir on 10/01/15.
- */
+* Created by sukruhasdemir on 10/01/15.
+*/
 class ElementTestCase extends TestCase {
 
     def testUniformElement(): Unit = {

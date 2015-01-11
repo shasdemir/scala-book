@@ -1,6 +1,6 @@
 package Ch14
 
-// this was to be TestNG tests...
+// this was to be TestNG suite...
 
 //import org.testng.annotations.Test
 //import org.testng.Assert.assertEquals

@@ -9,7 +9,7 @@ import org.scalatest.junit.JUnit3Suite
  */
 class ElementSuite extends FunSuite {
 
-    test("elem result should have the same width as passed.") {  // name of the test
+    test("elem result should have the same width as passed.") {  // description / name of the test
         val ele = elem('x', 2, 3)
         assertResult(2) {
             ele.width

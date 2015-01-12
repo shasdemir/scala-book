@@ -19,4 +19,22 @@ object Simplifier {
         case BinOp("+", x, y) if x == y => BinOp("*", x, Number(2))
         case _ => expr
     }
+
+    def simplifyAll(expr: Expr): Expr = expr match {
+        case UnOp("-", UnOp("-", e)) => simplifyAll(e)
+
+        case BinOp("+", e, Number(0)) => simplifyAll(e)
+
+        case BinOp("*", e, Number(1)) => simplifyAll(e)
+
+        case UnOp("abs", e @ UnOp("abs", _)) => simplifyAll(e)
+
+        case BinOp("+", x, y) if x == y => BinOp("*", simplifyAll(x), Number(2))
+
+        case UnOp(op, e) => UnOp(op, simplifyAll(e))
+
+        case BinOp(op, l, r) => BinOp(op, simplifyAll(l), simplifyAll(r))
+
+        case _ => expr
+    }
 }

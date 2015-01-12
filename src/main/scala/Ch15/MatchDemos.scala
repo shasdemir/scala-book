@@ -23,7 +23,7 @@ object MatchDemos {
         case _ => -1
     }
 
-    def isIntIntMap(x: Any) = x match {
+    def isIntIntMap(x: Any) = x match {  // warning due to type erasure
         case m: Map[Int, Int] => true
         case _ => false
     }
@@ -31,6 +31,11 @@ object MatchDemos {
     def isStringArray(x: Any) = x match {
         case ary: Array[String] => "yes"
         case _ => "no"
+    }
+
+    def show(x: Option[String]) = x match {
+        case Some(s) => s
+        case None => "?"
     }
 
     val withDefault: Option[Int] => Int = {
@@ -41,5 +46,24 @@ object MatchDemos {
     def withDefault2: Option[Int] => Int = {
         case Some(x) => x
         case None => 0
+    }
+
+    def withDefault3(x: Option[Int]): Int = x match {
+        case Some(c) => c
+        case None => 0
+    }
+
+    def demoNew() = {
+        def withDefault5(inputFunc: Option[Int] => Int): String = {
+            inputFunc.toString()
+        }
+        // this compiles without declaring the type of match function literal, because withDefault5 has expects a
+        // certain type
+        println(
+            withDefault5({
+                case Some(x) => x
+                case None => 0
+        })
+        )
     }
 }

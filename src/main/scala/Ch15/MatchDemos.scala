@@ -37,4 +37,9 @@ object MatchDemos {
         case Some(x) => x
         case None => 0
     }
+
+    def withDefault2: Option[Int] => Int = {
+        case Some(x) => x
+        case None => 0
+    }
 }

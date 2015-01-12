@@ -16,6 +16,7 @@ object Simplifier {
         case BinOp("+", e, Number(0)) => e  // Adding zero
         case BinOp("*", e, Number(1)) => e  // Multiplying by one
         case UnOp("abs", e @ UnOp("abs", _)) => e  // Double absolute value
+        case BinOp("+", x, y) if x == y => BinOp("*", x, Number(2))
         case _ => expr
     }
 }

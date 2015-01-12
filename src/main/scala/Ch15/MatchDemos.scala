@@ -27,4 +27,9 @@ object MatchDemos {
         case m: Map[Int, Int] => true
         case _ => false
     }
+
+    def isStringArray(x: Any) = x match {
+        case ary: Array[String] => "yes"
+        case _ => "no"
+    }
 }

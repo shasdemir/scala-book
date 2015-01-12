@@ -18,3 +18,14 @@ object Simplifier {
         case _ => expr
     }
 }
+
+
+object Describer {
+    def describe(x: Any):String = x match {
+        case 5 => "five"
+        case true => "truth"
+        case "hello" => "hi!"
+        case Nil => "the empty list"
+        case _ => "something else"
+    }
+}

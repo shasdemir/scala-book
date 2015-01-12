@@ -23,10 +23,10 @@ object MatchDemos {
         case _ => -1
     }
 
-    def isIntIntMap(x: Any) = x match {  // warning due to type erasure
-        case m: Map[Int, Int] => true
-        case _ => false
-    }
+//    def isIntIntMap(x: Any) = x match {  // warning due to type erasure
+//        case m: Map[Int, Int] => true
+//        case _ => false
+//    }
 
     def isStringArray(x: Any) = x match {
         case ary: Array[String] => "yes"
@@ -65,5 +65,9 @@ object MatchDemos {
                 case None => 0
         })
         )
+    }
+
+    val second: PartialFunction[List[Int], Int] = {
+        case x :: y :: _ => y
     }
 }

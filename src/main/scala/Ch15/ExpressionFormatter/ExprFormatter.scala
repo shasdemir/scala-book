@@ -1,12 +1,13 @@
 package Ch15.ExpressionFormatter
 
 import Ch15._
+import Ch10._
 import Ch10.Element.elem
 
 /**
  * Created by sukruhasdemir on 13/01/15.
  */
-class ExprFormatter {
+object ExprFormatter {
 
     // contains operators in groups of increasing precedence
     private val opGroups =
@@ -20,7 +21,7 @@ class ExprFormatter {
             Set("*", "%")
         )
 
-    // a ,apping from operators to their precedence
+    // a mapping from operators to their precedence
     private val precedence = {
         val assocs =
             for {
@@ -32,4 +33,39 @@ class ExprFormatter {
 
     private val unaryPrecedence = opGroups.length
     private val fractionPrecedence = -1
+
+    private def format(e: Expr, enclPrec: Int): Element = e match {
+        case Var(name) => elem(name)
+
+        case Number(num) =>
+            def stripDot(s: String) = if (s endsWith ".0") s.substring(0, s.length - 2) else s
+
+            elem(stripDot(num.toString))
+
+        case UnOp(op, arg) =>
+            elem(op) beside format(arg, unaryPrecedence)
+
+        case BinOp("/", left, right) =>
+            val top = format(left, fractionPrecedence)
+            val bot = format(right, fractionPrecedence)
+            val line = elem('-', top.width max bot.width, 1)
+            val frac = top above line above bot
+
+            if (enclPrec != fractionPrecedence)
+                frac
+            else
+                elem(" ") beside frac beside elem(" ")
+
+        case BinOp(op, left, right) =>
+            val opPrec = precedence(op)
+            val l = format(left, opPrec)
+            val r = format(right, opPrec + 1)
+            val oper = l beside elem(" " + op + " ") beside r
+            if (enclPrec <= opPrec)
+                oper
+            else
+                elem("(") beside oper beside elem(")")
+    }
+
+    def format(e: Expr): Element = format(e, 0)
 }

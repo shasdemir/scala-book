@@ -13,8 +13,9 @@ object Express extends App {
     val e2 = BinOp("+", BinOp("/", Var("x"), Number(2)),
                         BinOp("/", Number(1.5), Var("x")))
     val e3 = BinOp("/", e1, e2)
+    val e4 = BinOp("/", BinOp("+", e1, e3), e2)
 
     def show(e: Expr) = println(f.format(e) + "\n\n")
 
-    for (e <- Array(e1, e2, e3)) show(e)
+    for (e <- Array(e1, e2, e3, e4)) show(e)
 }

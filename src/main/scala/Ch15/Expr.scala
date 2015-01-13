@@ -36,5 +36,13 @@ object Simplifier {
         case BinOp(op, l, r) => BinOp(op, simplifyAll(l), simplifyAll(r))
 
         case _ => expr
+
+        //case BinOp(_,_,_) => Number(42)
     }
+
+//    def sealDemo(e: Expr): String = e match {  // gives warning because match cases are not exhaustive
+//        case Number(_) => "a number"
+//        case Var(_)    => "a variable"
+//    }
+
 }

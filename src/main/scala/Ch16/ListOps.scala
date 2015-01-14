@@ -32,8 +32,6 @@ object Sorting {
             merge(mergeSort(lessThan)(left), mergeSort(lessThan)(right))
         }
     }
-
-
 }
 
 object ListOps {
@@ -46,5 +44,4 @@ object ListOps {
         case Nil => Nil
         case x :: ys => reverse(ys) ::: List(x)
     }
-
 }

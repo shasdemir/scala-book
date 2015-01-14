@@ -16,7 +16,12 @@ object Sorting {
 object ListOps {
     def append[T](left: List[T], right: List[T]): List[T] = left match {
         case Nil => right
-
         case lFirst :: lRest =>  lFirst :: append(lRest, right)
     }
+
+    def reverse[T](xs: List[T]): List[T] = xs match {
+        case Nil => Nil
+        case x :: ys => reverse(ys) ::: List(x)
+    }
+
 }

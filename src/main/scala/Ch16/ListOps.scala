@@ -5,13 +5,35 @@ package Ch16
  */
 object Sorting {
     def insertionSort(xList: List[Int]): List[Int] = {
+
         def insert(x: Int, xList: List[Int]): List[Int] =
             if (xList.isEmpty || x <= xList.head) x :: xList
             else xList.head :: insert(x, xList.tail)
 
         if (xList.isEmpty) Nil
         else insert(xList.head, insertionSort(xList.tail))
+    }
+
+    def mergeSort[T](lessThan: (T, T) => Boolean)(xs: List[T]): List[T] = {
+
+        def merge(xs: List[T], ys: List[T]): List[T] =
+            (xs, ys) match {
+                case (Nil, _) => ys
+                case (_, Nil) => xs
+                case (x :: xs1, y :: ys1) =>
+                    if (lessThan(x, y)) x :: merge(xs1, ys)
+                    else y :: merge(xs, ys1)
+            }
+
+        val slicePos = xs.length / 2
+        if (slicePos == 0) xs
+        else {
+            val (left, right) = xs splitAt slicePos
+            merge(mergeSort(lessThan)(left), mergeSort(lessThan)(right))
         }
+    }
+
+
 }
 
 object ListOps {

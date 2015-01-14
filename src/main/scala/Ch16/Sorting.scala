@@ -12,3 +12,11 @@ object Sorting {
         if (xList.isEmpty || x <= xList.head) x :: xList
         else xList.head :: insert(x, xList.tail)
 }
+
+object ListOps {
+    def append[T](left: List[T], right: List[T]): List[T] = left match {
+        case Nil => right
+
+        case lFirst :: lRest =>  lFirst :: append(lRest, right)
+    }
+}

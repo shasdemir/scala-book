@@ -32,6 +32,11 @@ object Sorting {
             merge(mergeSort(lessThan)(left), mergeSort(lessThan)(right))
         }
     }
+
+    val intSort = mergeSort((x: Int, y: Int) => x < y) _
+    val reverseIntSort = mergeSort((x: Int, y: Int) => x > y) _
+
+
 }
 
 object ListOps {

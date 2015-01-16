@@ -51,4 +51,10 @@ object ListOps {
     def sum(xs: List[Int]): Int = (0 /: xs)(_ + _)
 
     def product(xs: List[Int]): Int = (1 /: xs) (_ * _)
+
+    def flattenLeft[T](xs: List[List[T]]): List[T] =
+            (List[T]() /: xs) (_ ::: _)
+
+    def flattenRight[T](xs: List[List[T]]): List[T] =
+        (xs :\ List[T]()) (_ ::: _)
 }

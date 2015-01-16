@@ -37,6 +37,7 @@ object Sorting {
     val reverseIntSort = mergeSort((x: Int, y: Int) => x > y) _
 }
 
+
 object ListOps {
     def append[T](left: List[T], right: List[T]): List[T] = left match {
         case Nil => right
@@ -57,4 +58,7 @@ object ListOps {
 
     def flattenRight[T](xs: List[List[T]]): List[T] =
         (xs :\ List[T]()) (_ ::: _)
+
+    def reverseLeft[T](xs: List[T]) =
+        (List[T]() /: xs) {(ys, y) => y :: ys}
 }

@@ -35,8 +35,6 @@ object Sorting {
 
     val intSort = mergeSort((x: Int, y: Int) => x < y) _
     val reverseIntSort = mergeSort((x: Int, y: Int) => x > y) _
-
-
 }
 
 object ListOps {
@@ -49,4 +47,8 @@ object ListOps {
         case Nil => Nil
         case x :: ys => reverse(ys) ::: List(x)
     }
+
+    def sum(xs: List[Int]): Int = (0 /: xs)(_ + _)
+
+    def product(xs: List[Int]): Int = (1 /: xs) (_ * _)
 }

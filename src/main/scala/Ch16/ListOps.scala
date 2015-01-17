@@ -13,7 +13,7 @@ object Sorting {
         if (xList.isEmpty) Nil
         else insert(xList.head, insertionSort(xList.tail))
     }
-
+ 
     def mergeSort[T](lessThan: (T, T) => Boolean)(xs: List[T]): List[T] = {
 
         def merge(xs: List[T], ys: List[T]): List[T] =
@@ -54,7 +54,7 @@ object ListOps {
     def product(xs: List[Int]): Int = (1 /: xs) (_ * _)
 
     def flattenLeft[T](xs: List[List[T]]): List[T] =
-            (List[T]() /: xs) (_ ::: _)
+        (List[T]() /: xs) (_ ::: _)  // this is inefficient, use flattenRight instead
 
     def flattenRight[T](xs: List[List[T]]): List[T] =
         (xs :\ List[T]()) (_ ::: _)

@@ -7,7 +7,7 @@ import scala.collection.mutable
  */
 object WordCounter {
     def main(args: Array[String]): Unit = {
-        val text = "See Spot run. Run, Spot. Run?"
+        val text = "See Spot run! Run, Spot. Run!"
 
         println("Word counts in: \"" + text +"\"")
         println(countWords(text))

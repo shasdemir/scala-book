@@ -1,7 +1,5 @@
 package Ch17
 
-import scala.collection.mutable
-
 /**
  * Created by sukruhasdemir on 19/01/15.
  */
@@ -13,22 +11,24 @@ object WordCounter {
         println(countWords(text))
     }
 
-    def countWords(s: String): mutable.Map[String, Int] = {
-        val splittedArray = s.split("[ !?,.]+").map(_.toLowerCase)
+    def countWords(s: String): Map[String, Int] = {
+        val splittedArray = s.split("[ !?,.]+")
 
-        val wordTuples = splittedArray.map((_, 1)).toList
+        val wordList = splittedArray.map(_.toLowerCase).toList
 
-        val countAccumulator = mutable.Map.empty[String, Int]
+        val countAccumulator = Map.empty[String, Int]
 
-        (countAccumulator /: wordTuples) ((map, wTuple) => {
-            if (map.keySet.contains(wTuple._1))
-                map(wTuple._1) += 1
+        (countAccumulator /: wordList) ((map, word) => {
+            var tempMap = map
+
+            if (tempMap.contains(word)) {
+                val oldCount = tempMap(word)
+                tempMap += (word -> (oldCount + 1))
+            }
             else
-                map += wTuple
+                tempMap += (word -> 1)
 
-            map
+            tempMap
         })
-
-        countAccumulator
     }
 }

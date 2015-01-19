@@ -12,9 +12,9 @@ object WordCounter {
     }
 
     def countWords(s: String): Map[String, Int] = {
-        val splittedArray = s.split("[ !?,.]+")
+        val splitArray = s.split("[ !?,.]+")
 
-        val wordList = splittedArray.map(_.toLowerCase).toList
+        val wordList = splitArray.map(_.toLowerCase).toList
 
         val countAccumulator = Map.empty[String, Int]
 
@@ -22,8 +22,7 @@ object WordCounter {
             var tempMap = map
 
             if (tempMap.contains(word)) {
-                val oldCount = tempMap(word)
-                tempMap += (word -> (oldCount + 1))
+                tempMap += (word -> (tempMap(word) + 1))
             }
             else
                 tempMap += (word -> 1)

@@ -21,11 +21,7 @@ object WordCounter {
         (countAccumulator /: wordList) ((map, word) => {
             var tempMap = map
 
-            if (tempMap.contains(word)) {
-                tempMap += (word -> (tempMap(word) + 1))
-            }
-            else
-                tempMap += (word -> 1)
+            tempMap += (word -> (tempMap.getOrElse(word, 0) + 1))
 
             tempMap
         })

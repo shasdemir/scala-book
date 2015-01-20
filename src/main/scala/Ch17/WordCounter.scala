@@ -30,4 +30,7 @@ object WordCounter {
             tempMap
         })
     }
+
+    def longestWordAndIndex(words: Array[String]) =
+        words.zipWithIndex.maxBy(_._1.length)
 }

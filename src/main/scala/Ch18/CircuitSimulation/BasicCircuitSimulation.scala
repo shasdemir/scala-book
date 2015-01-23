@@ -55,7 +55,7 @@ abstract class BasicCircuitSimulation extends Simulation {
             val a1Sig = a1.getSignal
             val a2Sig = a2.getSignal
             afterDelay(OrGateDelay) {
-                output setSignal (a1Sig & a2Sig)
+                output setSignal (a1Sig | a2Sig)
             }
         }
         a1 addAction orAction

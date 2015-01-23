@@ -15,8 +15,7 @@ abstract class Simulation {
 
     private var agenda: List[WorkItem] = List()
 
-    private def insert(ag: List[WorkItem],
-                       item: WorkItem): List[WorkItem] = {
+    private def insert(ag: List[WorkItem], item: WorkItem): List[WorkItem] = {
         if (ag.isEmpty || item.time < ag.head.time) item :: ag
         else ag.head :: insert(ag.tail, item)
     }

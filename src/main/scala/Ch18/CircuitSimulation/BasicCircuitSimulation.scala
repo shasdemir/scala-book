@@ -3,7 +3,7 @@ package Ch18.CircuitSimulation
 /**
  * Created by sukruhasdemir on 23/01/15.
  */
-abstract class BasicCircuitSimulation extends Simulation {
+abstract class BasicCircuitSimulation extends Simulation {  // Circuit simulation package
 
     def InverterDelay: Int  // constants
     def AndGateDelay: Int

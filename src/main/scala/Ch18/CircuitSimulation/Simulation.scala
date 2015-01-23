@@ -4,7 +4,7 @@ package CircuitSimulation
 /**
  * Created by sukruhasdemir on 23/01/15.
  */
-abstract class Simulation {
+abstract class Simulation {  // Discrete event simulation framework.
 
     type Action = () => Unit
 

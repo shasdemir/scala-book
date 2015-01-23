@@ -3,7 +3,7 @@ package Ch18.CircuitSimulation
 /**
  * Created by sukruhasdemir on 24/01/15.
  */
-object MySimulation extends CircuitSimulation {
+object MySimulation extends CircuitSimulation {  // A simulated circuit.
     def InverterDelay = 1
     def AndGateDelay = 3
     def OrGateDelay = 5

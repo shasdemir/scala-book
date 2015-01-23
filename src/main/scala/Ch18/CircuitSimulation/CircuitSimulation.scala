@@ -3,7 +3,7 @@ package Ch18.CircuitSimulation
 /**
  * Created by sukruhasdemir on 24/01/15.
  */
-abstract class CircuitSimulation extends BasicCircuitSimulation {
+abstract class CircuitSimulation extends BasicCircuitSimulation {  // A library of user-defined circuits
 
     def halfAdder(a: Wire, b: Wire, s: Wire, c: Wire): Unit = {
         val d, e = new Wire

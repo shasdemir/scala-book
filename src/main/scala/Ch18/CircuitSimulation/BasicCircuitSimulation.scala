@@ -5,7 +5,7 @@ package Ch18.CircuitSimulation
  */
 abstract class BasicCircuitSimulation extends Simulation {
 
-    def InverterDelay: Int  // constant
+    def InverterDelay: Int  // constants
     def AndGateDelay: Int
     def OrGateDelay: Int
 
@@ -60,5 +60,12 @@ abstract class BasicCircuitSimulation extends Simulation {
         }
         a1 addAction orAction
         a2 addAction orAction
+    }
+
+    def probe (name: String, wire: Wire): Unit = {
+        def probeAction(): Unit = {
+            println(name + " " + currentTime + " new-value = " + wire.getSignal)
+        }
+        wire addAction probeAction
     }
 }

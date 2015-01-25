@@ -17,7 +17,7 @@ class SlowHeadQueue[T](smele: List[T]) {  // not efficient, smele is elems rever
 }
 
 
-class FunctionalQueue[T](private val leading: List[T], private val trailing: List[T]) {
+class FunctionalQueue[+T](private val leading: List[T], private val trailing: List[T]) {
     private def mirror =
         if (leading.isEmpty)
             new FunctionalQueue(trailing.reverse, Nil)
@@ -31,7 +31,7 @@ class FunctionalQueue[T](private val leading: List[T], private val trailing: Lis
         new FunctionalQueue(q.leading.tail, q.trailing)
     }
 
-    def enqueue(x: T) = new FunctionalQueue(leading, x :: trailing)
+    def enqueue[U >: T](x: U) = new FunctionalQueue[U](leading, x :: trailing)
 
     //def this(elems: T*) = this(elems.toList, Nil)
 }

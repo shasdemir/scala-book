@@ -33,11 +33,11 @@ class FunctionalQueue[T](private val leading: List[T], private val trailing: Lis
 
     def enqueue(x: T) = new FunctionalQueue(leading, x :: trailing)
 
-    def this(elems: T*) = this(elems.toList, Nil)
+    //def this(elems: T*) = this(elems.toList, Nil)
 }
 
 
 object FunctionalQueue {
     // constructs a queue with initial elements 'xs'
-    def apply[T](xs: T*) = new Queue[T](xs.toList, Nil)
+    def apply[T](xs: T*) = new FunctionalQueue[T](xs.toList, Nil)
 }

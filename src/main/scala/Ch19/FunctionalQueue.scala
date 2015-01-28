@@ -17,7 +17,7 @@ class SlowHeadQueue[T](smele: List[T]) {  // not efficient, smele is elems rever
 }
 
 
-class FunctionalQueue[+T](private var leading: List[T], private var trailing: List[T]) {
+class FunctionalQueue[+T](private[this] var leading: List[T], private[this] var trailing: List[T]) {
     private def mirror() =
         if (leading.isEmpty) {
             while (trailing.nonEmpty) {

@@ -19,3 +19,9 @@ trait RationalTrait {
 
     override def toString = numer + "/" + denom
 }
+
+
+object TwoThirds extends {
+    val numerArg = 2
+    val denomArg = 3
+} with RationalTrait

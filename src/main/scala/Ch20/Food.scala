@@ -10,6 +10,9 @@ abstract class Animal {
 }
 
 
+class Fish extends Food
+
+
 class Grass extends Food
 class Cow extends Animal {
     type SuitableFood = Grass

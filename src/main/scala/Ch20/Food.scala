@@ -28,3 +28,8 @@ class Dog extends Animal {
     override def eat(food: DogFood) {}
     override def makeFood() = new DogFood
 }
+
+
+class Pasture {
+    var animals = List[Animal { type SuitableFood = Grass }] = Nil
+}

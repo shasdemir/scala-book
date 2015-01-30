@@ -18,3 +18,10 @@ class Cow extends Animal {
     type SuitableFood = Grass
     override def eat(food: Grass) {}
 }
+
+
+class DogFood extends Food
+class Dog extends Animal {
+    type SuitableFood = DogFood
+    override def eat(food: DogFood) {}
+}

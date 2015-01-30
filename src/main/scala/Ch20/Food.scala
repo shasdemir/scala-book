@@ -31,5 +31,5 @@ class Dog extends Animal {
 
 
 class Pasture {
-    var animals = List[Animal { type SuitableFood = Grass }] = Nil
+    var animals: List[Animal { type SuitableFood = Grass }] = Nil
 }

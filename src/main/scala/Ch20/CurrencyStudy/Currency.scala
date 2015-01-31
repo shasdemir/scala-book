@@ -3,7 +3,8 @@ package Ch20.CurrencyStudy
 /**
  * Created by sukruhasdemir on 31/01/15.
  */
-abstract class Currency {  // faulty design
+abstract class AbstractCurrency {
+    type Currency <: AbstractCurrency
     val amount: Long
     def designation: String
 
@@ -13,11 +14,20 @@ abstract class Currency {  // faulty design
     def * (x: Double): Currency
 }
 
+abstract class Dollar extends AbstractCurrency {
+    type Currency = Dollar
+    def designation = "USD"
+}
+
+abstract class Euro extends AbstractCurrency {
+    type Currency = Dollar
+    def designation = "EUR"
+}
 
 
 
 
-
+// ---------------------------------------------------------------------------------------
 abstract class SCurrency {
     val amount: Long
     val threeLetterName: String

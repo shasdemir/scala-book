@@ -12,7 +12,10 @@ abstract class CurrencyZone {
     abstract class AbstractCurrency {
         val amount: Long
         def designation: String
-        //val CurrencyUnit: AbstractCurrency
+
+        def from(other: CurrencyZone#AbstractCurrency): Currency =
+            make(math.round(
+            other.amount.toDouble * Converter.exchangeRate(other.designation)(this.designation)))
 
         private def decimals(n: Long): Int = if (n == 1) 0 else 1 + decimals(n / 10)
         override def toString =

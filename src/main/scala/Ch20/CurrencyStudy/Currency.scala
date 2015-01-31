@@ -60,3 +60,33 @@ class USDAmount(val amount: Long) extends SCurrency {
 
     def make(amount: Long) = new USDAmount(amount)
 }
+
+
+// -------------------------------------------------------- another attempt
+trait TCurrency {
+    val amount: Long
+    val threeLetterName: String
+
+    type Designation <: TCurrency  // we need Designation type, because if + took TCurrency, different currency amounts
+    // could be summed
+
+    def make(amount: Long): Designation
+
+    override def toString = amount+ " " + threeLetterName
+
+    def + (that: Designation) = make(amount + that.amount)
+    def * (x: Double) = make((amount * x).toLong)
+}
+
+class TEuroAmount(val amount: Long) extends TCurrency {
+    val threeLetterName = "EUR"
+    type Designation = TEuroAmount
+    def make(amount: Long) = new TEuroAmount(amount)
+}
+
+
+class TDollarAmount(val amount: Long) extends TCurrency {
+    val threeLetterName = "USD"
+    type Designation = TDollarAmount
+    def make(amount: Long) = new TDollarAmount(amount)
+}

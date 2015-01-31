@@ -16,34 +16,27 @@ abstract class Currency {  // faulty design
 
 
 
-class CurrencyDesignation
-class EuroDesignation extends CurrencyDesignation
-class USDDesignation extends CurrencyDesignation
+
 
 abstract class SCurrency {
     val amount: Long
-    def designation: String
+    val threeLetterName: String
+    type Designation <: SCurrency
 
-    override def toString = amount+ " " + designation
+    override def toString = amount+ " " + threeLetterName
 
-    def + (that: SCurrency): SCurrency
-    def * (x: Double): SCurrency
+    def + (that: Designation) = new Designation(amount + that.amount)
+    def * (x: Double) = new Designation((amount * x).toLong)
 }
 
 
 class EuroAmount(val amount: Long) extends SCurrency {
-    val designation = "Euro"
-
-    def + (that: EuroAmount): EuroAmount = new EuroAmount(amount + that.amount)
-
-    def * (x: Double): EuroAmount = new EuroAmount((amount * x).toLong)
+    val threeLetterName = "EUR"
+    type Designation = EuroAmount
 }
 
 
 class USDAmount(val amount: Long) extends SCurrency {
-    val designation = "USD"
-
-    def + (that: USDAmount): USDAmount = new USDAmount(amount + that.amount)
-
-    def * (x: Double): USDAmount = new USDAmount((amount * x).toLong)
+    val threeLetterName = "USD"
+    type Designation = USDAmount
 }

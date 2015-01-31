@@ -49,7 +49,7 @@ object Europe extends CurrencyZone {
 
     val Cent = make(1)
     val Euro = make(100)
-    val currencyUnit = Euro
+    val CurrencyUnit = Euro
 }
 
 

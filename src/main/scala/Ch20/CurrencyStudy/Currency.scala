@@ -20,13 +20,17 @@ abstract class CurrencyZone {
 }
 
 
-object US extends CurrencyZone {
-    type Currency = Dollar
-    def make(x: Long) = new Dollar { val amount = x }
-
+object US extends CurrencyZone {  // all this is just to prevent currency amounts (Dollar, etc) from making more of
+    // themselves?
     abstract class Dollar extends AbstractCurrency {
         def designation = "USD"
     }
+    type Currency = Dollar
+    def make(x: Long) = new Dollar { val amount = x }
+
+    val Cent = make(1)
+    val Dollar = make(100)
+    val CurrencyUnit = Dollar
 }
 
 

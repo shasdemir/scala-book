@@ -3,27 +3,30 @@ package Ch20.CurrencyStudy
 /**
  * Created by sukruhasdemir on 31/01/15.
  */
-abstract class AbstractCurrency {
+
+abstract class CurrencyZone {
     type Currency <: AbstractCurrency
-    def make(amount: Long): Currency
+    def make(x: Long): Currency
 
-    val amount: Long
-    def designation: String
+    abstract class AbstractCurrency {
+        val amount: Long
+        def designation: String
 
-    override def toString = amount + " " + designation
+        override def toString = amount + " " + designation
 
-    def + (that: Currency): Currency
-    def * (x: Double): Currency
+        def + (that: Currency): Currency = make(this.amount + that.amount)
+        def * (x: Double): Currency = make((this.amount * x).toLong)
+    }
 }
 
-abstract class Dollar extends AbstractCurrency {
-    type Currency = Dollar
-    def designation = "USD"
-}
 
-abstract class Euro extends AbstractCurrency {
+object US extends CurrencyZone {
     type Currency = Dollar
-    def designation = "EUR"
+    def make(x: Long) = new Dollar { val amount = x }
+
+    abstract class Dollar extends AbstractCurrency {
+        def designation = "USD"
+    }
 }
 
 

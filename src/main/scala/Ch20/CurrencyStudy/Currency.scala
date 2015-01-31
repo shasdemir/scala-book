@@ -7,12 +7,17 @@ package Ch20.CurrencyStudy
 abstract class CurrencyZone {
     type Currency <: AbstractCurrency
     def make(x: Long): Currency
+    val CurrencyUnit: Currency
 
     abstract class AbstractCurrency {
         val amount: Long
         def designation: String
+        //val CurrencyUnit: AbstractCurrency
 
-        override def toString = amount + " " + designation
+        private def decimals(n: Long): Int = if (n == 1) 0 else 1 + decimals(n / 10)
+        override def toString =
+            ((amount.toDouble / CurrencyUnit.amount.toDouble)
+                    formatted ("%." + decimals(CurrencyUnit.amount) + "f") + " " + designation)
 
         def + (that: Currency): Currency = make(this.amount + that.amount)
         def * (x: Double): Currency = make((this.amount * x).toLong)
@@ -29,7 +34,7 @@ object US extends CurrencyZone {  // all this is just to prevent currency amount
     def make(x: Long) = new Dollar { val amount = x }
 
     val Cent = make(1)
-    val Dollar = make(100)
+    val Dollar = make(100)  // why give the same name to two members of an object?
     val CurrencyUnit = Dollar
 }
 

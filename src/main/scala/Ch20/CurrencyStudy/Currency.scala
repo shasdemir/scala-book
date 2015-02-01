@@ -23,7 +23,14 @@ abstract class CurrencyZone {
                     formatted ("%." + decimals(CurrencyUnit.amount) + "f") + " " + designation)
 
         def + (that: Currency): Currency = make(this.amount + that.amount)
+
+        def - (that: Currency): Currency = make(this.amount + that.amount)
+
         def * (x: Double): Currency = make((this.amount * x).toLong)
+
+        def / (that: Double) = make((this.amount / that).toLong)
+
+        def / (that: Currency) = this.amount.toDouble / that.amount
     }
 }
 

@@ -5,7 +5,7 @@ package Ch21
  */
 object MaxList {
 
-    def maxListUpBound[T <: Ordered[T]](elements: List[T]): T =
+    def maxListUpBound[T](elements: List[T])(implicit orderer: T => Ordered[T]): T =
         elements match {
             case List() => throw new IllegalArgumentException("empty list!")
             case List(x) => x

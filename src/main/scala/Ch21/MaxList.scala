@@ -22,4 +22,13 @@ object MaxList {
                 val maxRest = maxListImpParam(rest)(orderer)
                 if (orderer(first) > maxRest) first else maxRest
         }
+
+    def maxList[T](elements: List[T])(implicit orderer: T => Ordered[T]): T =
+        elements match {
+            case List() => throw new IllegalArgumentException("empty list!")
+            case List(x) => x
+            case first :: rest =>
+                val maxRest = maxListImpParam(rest)
+                if (first > maxRest) first else maxRest
+        }
 }

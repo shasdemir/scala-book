@@ -23,7 +23,7 @@ object MaxList {
                 if (orderer(first) > maxRest) first else maxRest
         }
 
-    def maxList[T](elements: List[T])(implicit orderer: T => Ordered[T]): T =
+    def maxList[T <% Ordered[T]](elements: List[T]): T =
         elements match {
             case List() => throw new IllegalArgumentException("empty list!")
             case List(x) => x

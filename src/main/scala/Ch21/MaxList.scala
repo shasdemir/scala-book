@@ -28,7 +28,7 @@ object MaxList {
             case List() => throw new IllegalArgumentException("empty list!")
             case List(x) => x
             case first :: rest =>
-                val maxRest = maxListImpParam(rest)
+                val maxRest = maxList(rest)
                 if (first > maxRest) first else maxRest
         }
 }

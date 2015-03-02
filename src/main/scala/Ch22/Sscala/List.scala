@@ -21,8 +21,7 @@ abstract class List[+T] {
 
     def map[U](f: T => U): List[U] =
         if (isEmpty) Nil
-        else Ch22.Sscala.::(f(head), tail.map(f))
-        //else f(head) :: tail.map(f)
+        else f(head) :: tail.map(f)
 }
 
 

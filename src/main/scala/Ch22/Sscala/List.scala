@@ -21,8 +21,6 @@ case object Nil extends List[Nothing] {
 }
 
 
-final case class ::[T](hd: T, tl: List[T]) extends List[T] {
-    def head = hd
-    def tail = tl
+final case class ::[T](head: T, tail: List[T]) extends List[T] {
     override def isEmpty: Boolean = false
 }

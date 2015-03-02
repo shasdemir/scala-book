@@ -10,8 +10,6 @@ abstract class List[+T] {
     def head: T
     def tail: List[T]
 
-    def ::[U >: T](x: U): List[U] = new ::(x, this)
-
     def length: Int = if (isEmpty) 0 else tail.length + 1
 
     def drop(n: Int): List[T] =
@@ -22,6 +20,12 @@ abstract class List[+T] {
     def map[U](f: T => U): List[U] =
         if (isEmpty) Nil
         else f(head) :: tail.map(f)
+
+    def ::[U >: T](x: U): List[U] = new ::(x, this)
+
+    def :::[U >: T](prefix: List[U]): List[U] =
+        if (prefix.isEmpty) this
+        else prefix.head :: prefix.tail ::: this
 }
 
 

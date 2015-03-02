@@ -9,6 +9,18 @@ abstract class List[+T] {
     def isEmpty: Boolean
     def head: T
     def tail: List[T]
+
+    def length: Int = if (isEmpty) 0 else tail.length + 1
+
+    def drop(n: Int): List[T] =
+        if (isEmpty) Nil
+        else if (n <= 0) this
+        else tail.drop(n - 1)
+
+    def map[U](f: T => U): List[U] =
+        if (isEmpty) Nil
+        else ::(f(head), tail.map(f))
+        //else f(head) :: tail.map(f)
 }
 
 

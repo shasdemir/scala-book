@@ -3,7 +3,7 @@ package Ch23
 /**
  * Created by sukruhasdemir on 22/03/15.
  */
-object ForExprSandbox {
+object ForExprSandbox extends App {
 
     case class Person(name: String, isMale: Boolean, children: Person*)
 
@@ -19,4 +19,9 @@ object ForExprSandbox {
     def makeChildrenPairs(sim: Person) = sim.children.map(child => (sim.name, child.name))
 
     val pairs = persons.filter(isMother).flatMap(makeChildrenPairs)
+    println("pairs: " + pairs)
+
+    // book's way:
+    val pairs2 = persons withFilter (!_.isMale) flatMap (p => p.children map (c => (p.name, c.name)))
+    println("pairs2: " + pairs2)
 }

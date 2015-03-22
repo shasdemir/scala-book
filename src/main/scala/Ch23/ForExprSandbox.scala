@@ -21,7 +21,14 @@ object ForExprSandbox extends App {
     val pairs = persons.filter(isMother).flatMap(makeChildrenPairs)
     println("pairs: " + pairs)
 
-    // book's way:
+    // the book's way:
     val pairs2 = persons withFilter (!_.isMale) flatMap (p => p.children map (c => (p.name, c.name)))
     println("pairs2: " + pairs2)
+
+    val pairs3 = for {
+        p <- persons
+        if !p.isMale
+        c <- p.children
+    } yield (p.name, c.name)
+    println("pairs3: " + pairs3)
 }

@@ -23,11 +23,19 @@ class NQueens {
             }
         }
 
-        // for a given partial solution, can we safely place the next queen at the given row, column?
-        def isSafe(row: Int, previousPlacements: List[(Int, Int)]): Boolean = {
+        // for a given partial solution, can we safely place the next queen at the given column, one row below the last?
+        def isSafe(column: Int, previousPlacements: List[(Int, Int)]): Boolean = {
             def check(q1: (Int, Int), q2: (Int, Int)): Boolean = {  // check if two queens check each other
-                
+                val sameRowOrColumn = (q1._1 == q2._1) || (q1._2 == q2._2)
+
+                val sameDiagonal = (q2._2 - q1._2).abs == (q2._1 - q1._1).abs
+
+                sameRowOrColumn || sameDiagonal
             }
+
+            val candidateRow = previousPlacements.head._1 + 1
+
+            previousPlacements.forall(old => !check(old, (candidateRow, column)))
         }
 
         partialSolutions(boardSize).head

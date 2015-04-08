@@ -3,8 +3,8 @@ package Ch23
 /**
  * Created by sukruhasdemir on 08/04/15.
  */
-class NQueens {
-    def main(args: List[String]): List[(Int, Int)] = {
+object NQueens {
+    def main(args: Array[String]): Unit = {
         val boardSize = args.head.toInt  // number of queens to place = size of the board
 
         // given all solutions that place k - 1 queens on the first k - 1 rows (and boardSize columns) place the kth
@@ -33,11 +33,15 @@ class NQueens {
                 sameRowOrColumn || sameDiagonal
             }
 
-            val candidateRow = previousPlacements.head._1 + 1
+            val candidateRow = if (previousPlacements.nonEmpty) previousPlacements.head._1 + 1
+                               else 1
 
             previousPlacements.forall(old => !check(old, (candidateRow, column)))
         }
 
-        partialSolutions(boardSize).head
+        val solutions = partialSolutions(boardSize)
+
+        if (solutions.nonEmpty) println(solutions.head)
+        else println("No solutions found.")
     }
 }
